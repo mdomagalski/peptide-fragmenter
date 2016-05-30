@@ -22,15 +22,17 @@
         _peptideChanged: function(newValue, oldValue) {
             var peptideFragment =  this.$.peptideFragmenter;
             peptideFragment.innerHTML = "";
-            var peptide = new fishtones.dry.RichSequence().fromString(newValue);
-            var spTheo  = fishtones.dry.MassBuilder.computeTheoSpectrum(peptide);
+            if(newValue){
+                var peptide = new fishtones.dry.RichSequence().fromString(newValue);
+                var spTheo  = fishtones.dry.MassBuilder.computeTheoSpectrum(peptide);
 
-            var v_theo = new fishtones.dry.TheoOnSequenceView({
-                el   : peptideFragment,
-                model: spTheo
-            });
+                var v_theo = new fishtones.dry.TheoOnSequenceView({
+                    el   : peptideFragment,
+                    model: spTheo
+                });
 
-            v_theo.render();
+                v_theo.render();
+            }
         }
     });
     </script>
