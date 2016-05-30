@@ -1,0 +1,36 @@
+<!-- Imports polymer -->
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import"  href="fishtones-js.html">
+
+<!-- Defines element markup -->
+<dom-module id="peptide-fragmenter">
+
+    <template>
+        <div id="peptideFragmenter"></div>
+    </template>
+    <script src="../fishtones-js/dist/fishtones-js-bundle-min.js"></script>
+    <script>
+    Polymer({
+        is: 'peptide-fragmenter',
+        properties:{
+            peptide: {
+                type: String,
+                observer: '_peptideChanged'
+            }
+        },
+
+        _peptideChanged: function(newValue, oldValue) {
+            this.$.peptideFragmenter.innerHTML = "";
+            var peptide = new fishtones.dry.RichSequence().fromString(newValue);
+            var spTheo  = fishtones.dry.MassBuilder.computeTheoSpectrum(peptide);
+
+            var v_theo = new fishtones.dry.TheoOnSequenceView({
+                el   : $('#peptideFragmenter'),
+                model: spTheo
+            });
+
+            v_theo.render();
+        }
+    });
+    </script>
+</dom-module>

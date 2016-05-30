@@ -1,0 +1,19 @@
+{
+    "name": "peptide-fragmenter",
+    "version": "0.0.1",
+    "description": "Peptide fragmenter",
+    "license": "MIT",
+    "main": "peptide-fragmenter.html",
+    "keywords": [
+        "polymer",
+        "web-components",
+        "peptide-fragmenter"
+    ],
+    "ignore": [
+        "**/.*",
+        "bower_components"
+    ],
+    "dependencies": {
+        "polymer": "Polymer/polymer#^1.2.0"
+    }
+}
