@@ -20,12 +20,13 @@
         },
 
         _peptideChanged: function(newValue, oldValue) {
-            this.$.peptideFragmenter.innerHTML = "";
+            var peptideFragment =  this.$.peptideFragmenter;
+            peptideFragment.innerHTML = "";
             var peptide = new fishtones.dry.RichSequence().fromString(newValue);
             var spTheo  = fishtones.dry.MassBuilder.computeTheoSpectrum(peptide);
 
             var v_theo = new fishtones.dry.TheoOnSequenceView({
-                el   : $('#peptideFragmenter'),
+                el   : peptideFragment,
                 model: spTheo
             });
 
