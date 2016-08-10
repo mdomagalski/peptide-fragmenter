@@ -4,6 +4,7 @@
 
 <!-- Defines element markup -->
 <dom-module id="peptide-fragmenter">
+
     <template>
         <div id="peptideFragmenter"></div>
     </template>
@@ -17,12 +18,13 @@
                 observer: '_peptideChanged'
             }
         },
+
         _peptideChanged: function(newValue, oldValue) {
             var peptideFragment =  this.$.peptideFragmenter;
             peptideFragment.innerHTML = "";
             if(newValue){
-                this.richSeqShortcuter = new fishtones.dry.RichSequenceShortcuter();
-                var peptide = self.richSeqShortcuter.richSeqFromString(newValue);
+                var richSeqShortcuter = new fishtones.dry.RichSequenceShortcuter();
+                var peptide = richSeqShortcuter.richSeqFromString(newValue);
                 var spTheo  = fishtones.dry.MassBuilder.computeTheoSpectrum(peptide);
 
                 var v_theo = new fishtones.dry.TheoOnSequenceView({
